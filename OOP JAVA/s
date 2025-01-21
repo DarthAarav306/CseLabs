@@ -1,0 +1,52 @@
+class StreetReview {
+    int streetID;
+    String streetComplaint;
+    String complaintDate;
+
+    // Constructor to initialize the data members
+    public StreetReview(int streetID, String streetComplaint, String complaintDate) {
+        this.streetID = streetID;
+        this.streetComplaint = streetComplaint;
+        this.complaintDate = complaintDate;
+    }
+
+    // Method to display a complaint
+    void display() {
+        System.out.println("Street ID: " + streetID);
+        System.out.println("Street Complaint: " + streetComplaint);
+        System.out.println("Date of Complaint: " + complaintDate);
+        System.out.println("----------------------");
+    }
+
+    // Method to display complaints by month
+    void displayByMonth(StreetReview[] s) {
+        // Extracting month information from each review's complaint date
+        String[] months = new String[s.length];
+        for (int i = 0; i < s.length; i++) {
+            months[i] = s[i].complaintDate.substring(3, 6);
+        }
+
+        // Display complaints for each month
+        for (int i = 0; i < s.length; i++) {
+            for (int j = 0; j < s.length; j++) {
+                if (s[i].complaintDate.substring(3, 6).equals(months[j])) {
+                    // Check if the complaint contains "road"
+                    if (s[i].streetComplaint.indexOf("road") != -1) {
+                        s[i].display();
+                    }
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Creating an array of StreetReview objects
+        StreetReview[] reviews = new StreetReview[3];
+        reviews[0] = new StreetReview(101, "Potholes on the road", "03 Apr 2024");
+        reviews[1] = new StreetReview(102, "Street lights not working", "15 Mar 2024");
+        reviews[2] = new StreetReview(103, "Road blocked due to construction", "10 Apr 2024");
+
+        // Display complaints by month
+        reviews[0].displayByMonth(reviews);
+    }
+}
