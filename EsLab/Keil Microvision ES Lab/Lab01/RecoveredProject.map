@@ -1,0 +1,12 @@
+ARM Linker, 5.03 [Build 76] [MDK-ARM Lite]
+
+==============================================================================
+
+Section Cross References
+
+    addition.o(RESET) refers to addition.o(mycode) for Reset_Handler
+    addition.o(RESET) refers to program1.o(mycode) for Reset_Handler
+    program1.o(RESET) refers to addition.o(mycode) for Reset_Handler
+    program1.o(RESET) refers to program1.o(mycode) for Reset_Handler
+    program1.o(mycode) refers to program1.o(mydata) for DST
+

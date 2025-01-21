@@ -1,0 +1,2 @@
+Dependencies for Project 'Project1', Target 'Target 1': (DO NOT MODIFY !)
+F (.\program1.s)(0x6783B3EF)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx--list .\program1.lst --xref -o .\program1.o --depend .\program1.d)

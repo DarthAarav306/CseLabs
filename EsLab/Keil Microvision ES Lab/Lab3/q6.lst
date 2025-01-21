@@ -1,0 +1,171 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008                 AREA             mycode,CODE,READONLY
+   10 00000000                 ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         Reset_Handler
+   13 00000000 480A            LDR              R0, =FIB_SERIES
+   14 00000002 F04F 0100       MOV              R1,#0       ; First Fibonacci n
+                                                            umber (F(0) = 0)
+   15 00000006 F04F 0201       MOV              R2,#1       ; Second Fibonacci 
+                                                            number (F(1) = 1)
+   16 0000000A F04F 030A       MOV              R3,#10      ; Number of terms t
+                                                            o generate
+   17 0000000E         
+   18 0000000E F840 1B04       STR              R1,[R0],#4  ; Store F(0) at mem
+                                                            ory location and in
+                                                            crement R0
+   19 00000012 F840 2B04       STR              R2,[R0],#4  ; Store F(1) at nex
+                                                            t memory location a
+                                                            nd increment R0
+   20 00000016 1E9B            SUBS             R3,R3,#2    ; Reduce loop count
+                                                            er (since first two
+                                                             values are already
+                                                             stored)
+   21 00000018         
+   22 00000018         LOOP
+   23 00000018 EB01 0402       ADD              R4,R1,R2    ; Compute next Fibo
+                                                            nacci number
+   24 0000001C F840 4B04       STR              R4,[R0],#4  ; Store computed Fi
+                                                            bonacci number in m
+                                                            emory
+   25 00000020 4611            MOV              R1, R2      ; Update F(n-2) = F
+                                                            (n-1)
+   26 00000022 4622            MOV              R2, R4      ; Update F(n-1) = F
+                                                            (n)
+   27 00000024 1E5B            SUBS             R3,R3,#1
+   28 00000026 D1F7            BNE              LOOP
+   29 00000028         
+   30 00000028         STOP
+   31 00000028 E7FE            B                STOP
+   32 0000002A         
+   33 0000002A 00 00 00000000  AREA             data,DATA,READWRITE
+   34 00000000         
+   35 00000000 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00       FIB_SERIES
+                               SPACE            40          ; Reserve space for
+                                                             10 Fibonacci numbe
+                                                            rs (10 × 4 bytes = 
+                                                            40 bytes)
+   36 00000028         
+   37 00000028                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\q6.d -
+o.\q6.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=.\q6.lst q6.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file q6.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file q6.s
+   Uses
+      At line 2 in file q6.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+LOOP 00000018
+
+Symbol: LOOP
+   Definitions
+      At line 22 in file q6.s
+   Uses
+      At line 28 in file q6.s
+Comment: LOOP used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file q6.s
+   Uses
+      At line 6 in file q6.s
+      At line 11 in file q6.s
+
+STOP 00000028
+
+Symbol: STOP
+   Definitions
+      At line 30 in file q6.s
+   Uses
+      At line 31 in file q6.s
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 9 in file q6.s
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FIB_SERIES 00000000
+
+Symbol: FIB_SERIES
+   Definitions
+      At line 35 in file q6.s
+   Uses
+      At line 13 in file q6.s
+Comment: FIB_SERIES used once
+data 00000000
+
+Symbol: data
+   Definitions
+      At line 33 in file q6.s
+   Uses
+      None
+Comment: data unused
+2 symbols
+341 symbols in table
